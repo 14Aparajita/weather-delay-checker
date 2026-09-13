@@ -1,12 +1,12 @@
 # Weather Delay Checker
 
 A small Node.js script that checks live weather for a batch of delivery orders and
-flags the ones likely to be delayed — built for the AI Intern take-home assignment.
+flags the ones likely to be delayed - built for the AI Intern take-home assignment.
 
 It reads orders from `orders.json`, checks each city's current weather against
 OpenWeatherMap **concurrently**, marks bad-weather orders as `Delayed`, and generates a
 personalized apology message for each one. One invalid city in the batch won't crash
-the run — it's logged and skipped, and everything else still completes.
+the run - it's logged and skipped, and everything else still completes.
 
 ## How it works
 
@@ -27,14 +27,14 @@ the run — it's logged and skipped, and everything else still completes.
 weather-delay-checker/
 ├── index.js          # main script
 ├── package.json
-├── orders.json        # sample data — gets updated in place after each run
+├── orders.json        # sample data - gets updated in place after each run
 ├── .env.example       # copy to .env and add your real API key
 └── README.md
 ```
 
 ## Requirements
 
-- Node.js **18+** (the script uses the built-in global `fetch` — no extra HTTP library)
+- Node.js **18+** (the script uses the built-in global `fetch` - no extra HTTP library)
 - A free OpenWeatherMap API key → https://openweathermap.org/api
 
 Check your Node version:
@@ -80,22 +80,22 @@ Done. orders.json has been updated.
 ```
 [ERROR] Order 1004 (InvalidCity123): Weather API error for "InvalidCity123": 404 city not found
 ```
-(That error line prints alongside the rest — the script keeps going and still finishes
+(That error line prints alongside the rest - the script keeps going and still finishes
 processing every valid city.)
 
 ## Verifying it worked
 
 1. Run `npm start` - you should see one console line per order, plus a final "Done" line.
 2. Open `orders.json` - any order whose city had matching bad weather at the time you
-   ran it now shows `"status": "Delayed"`. `InvalidCity123` stays `"Pending"` — its
+   ran it now shows `"status": "Delayed"`. `InvalidCity123` stays `"Pending"` - its
    error is only logged to the console, not written into the order data.
 3. Since New York/Mumbai/London's weather changes day to day, *which* orders end up
-   `Delayed` depends on the actual weather when you run it — that's expected, not a bug.
+   `Delayed` depends on the actual weather when you run it - that's expected, not a bug.
 
 ## Resilience & security
 
 - **Doesn't crash on bad input**: each order is fetched inside its own `try/catch`, so
-  one 404 (or any other failure) can't take down the whole batch — `Promise.all` still
+  one 404 (or any other failure) can't take down the whole batch - `Promise.all` still
   resolves with every order accounted for.
 - **No hardcoded API key**: the key is loaded from `.env` via `dotenv`. `.env.example`
   is committed so anyone cloning the repo knows what variable to set, without ever
@@ -120,5 +120,5 @@ processing every valid city.)
 - Uses the built-in `fetch` (Node 18+), so `dotenv` is the only real dependency.
 - The three delay-triggering conditions (`Rain`, `Snow`, `Extreme`) are matched exactly
   as specified in the assignment, against OpenWeatherMap's `weather[0].main` field.
-- `orders.json` is treated as the "local database" as instructed — the script reads and
+- `orders.json` is treated as the "local database" as instructed - the script reads and
   overwrites it directly rather than using an actual database.
