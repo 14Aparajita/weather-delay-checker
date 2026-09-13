@@ -56,7 +56,6 @@ Open `.env` and add your real key:
 OPENWEATHER_API_KEY=your_actual_key_here
 ```
 
-> `.env` is gitignored — your key never gets committed or shared.
 
 ## Run
 
@@ -70,10 +69,10 @@ npm start
 ```
 Checking weather for 4 orders concurrently...
 
-[DELAYED] Order 1001 (Alice Smith) — weather in New York is "Rain"
+[DELAYED] Order 1001 (Alice Smith) - weather in New York is "Rain"
    Apology message: "Hi Alice, your order to New York is delayed due to heavy rain. We appreciate your patience!"
-[OK] Order 1002 (Bob Jones) — weather in Mumbai is "Clear", no delay
-[DELAYED] Order 1003 (Charlie Green) — weather in London is "Snow"
+[OK] Order 1002 (Bob Jones) - weather in Mumbai is "Clear", no delay
+[DELAYED] Order 1003 (Charlie Green) - weather in London is "Snow"
    Apology message: "Hi Charlie, your order to London is delayed due to heavy snow. We appreciate your patience!"
 
 Done. orders.json has been updated.
@@ -86,8 +85,8 @@ processing every valid city.)
 
 ## Verifying it worked
 
-1. Run `npm start` — you should see one console line per order, plus a final "Done" line.
-2. Open `orders.json` — any order whose city had matching bad weather at the time you
+1. Run `npm start` - you should see one console line per order, plus a final "Done" line.
+2. Open `orders.json` - any order whose city had matching bad weather at the time you
    ran it now shows `"status": "Delayed"`. `InvalidCity123` stays `"Pending"` — its
    error is only logged to the console, not written into the order data.
 3. Since New York/Mumbai/London's weather changes day to day, *which* orders end up
@@ -102,7 +101,7 @@ processing every valid city.)
   is committed so anyone cloning the repo knows what variable to set, without ever
   seeing a real key.
 
-## AI Log — prompts used while building this
+## AI Log - prompts used while building this
 
 - **Parallel fetching**: *"Write a Node.js function that fetches data for a list of
   items concurrently using `Promise.all`, not sequentially, and returns the results in
